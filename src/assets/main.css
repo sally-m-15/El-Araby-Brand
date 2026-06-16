@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap');
+@import "tailwindcss";
+
+@theme {
+  /* Primary Colors */
+  --color-primary: #3b82f6; /* أزرق أساسي */
+  --color-primary-hover: #2563eb; /* أزرق أغمق للـ hover */
+  --color-primary-light: #93c5fd; 
+    --color-button: #775718;
+  --color-button-hover: #5c470f;
+  --color-badge-bg:#652D91;
+  --color-badge-bg-hover:#381452;
+
+  /* Neutrals */
+ /* --color-background: #ffffff; /* خلفية الصفحة */
+ /* --color-surface: #ffffff; /* خلفية الكروت والفورمات */
+
+  /* Borders */
+  --color-border: #e5e7eb; /* لون الحدود */
+
+  /* Text */
+  /*--color-heading: #111827; /* العناوين الرئيسية */
+  --color-text: #4b5563; /* النصوص العادية */
+  --color-text-light: #6b7280; /* النصوص الثانوية */
+
+  /* Status */
+  --color-error: #ef4444; /* رسائل الخطأ والتحذير */
+
+  /* Disabled */
+ /* --color-disabled: #374151; /* العناصر المعطلة */
+
+  /* Fonts */
+  --font-sans: "Montserrat", sans-serif; /* الخط الأساسي */
+}
