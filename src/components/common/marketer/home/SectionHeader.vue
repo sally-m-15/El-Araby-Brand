@@ -27,19 +27,46 @@ defineProps({
 defineEmits(['view-all']);
 
 const getSeeAllRoute = (title) => {
+  console.log('Title = ', title);
+
   switch (title) {
     case 'أحدث المنتجات':
-    case 'وصلت حديثاً':      
-      return { name: 'products' }
+      return {
+        name: 'products',
+        query: {
+          type: 'latest'
+        }
+      };
 
-    case 'الأفضل مبيعاً':
-      return { name: 'best-sellers' }
+    case 'وصلت حديثاً':
+      return {
+        name: 'products',
+        query: {
+          type: 'new-arrivals'
+        }
+      };
+    case 'الأفضل مبيعا':
+      return {
+        name: 'products',
+        query: {
+          type: 'best-sellers'
+        }
+      };
 
     case 'منتجات الفئة':
-      return { name: 'category-products' }
+      return {
+        name: 'products',
+        query: {
+          type: 'category'
+        }
+      };
 
     default:
-      return { name: 'marketer-home' }
+      console.log('دخل default');
+
+      return {
+        name: 'products'
+      };
   }
-}
+};
 </script>

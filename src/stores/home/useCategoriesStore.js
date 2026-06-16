@@ -1,24 +1,20 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue'; // 🎯 زودي الـ computed هنا
+import { ref, computed } from 'vue';
 import { getAllCategories } from '@/services/home/categoriesService';
 import { handleApiError } from '@/services/api/axiosClient';
 
 export const useCategoriesStore = defineStore('categories', () => {
   const categoriesList = ref([]); 
-  const selectedCategories = ref([]); // 🎯 غيرنا الاسم لـ selectedCategories لأنها هتشيل الأوبجكتس كاملة من الـ v-select
+  const selectedCategories = ref([]); 
   const isLoading = ref(false);
+  const selectedCategory = ref(null);
 
   const fetchCategories = async () => {
 if (categoriesList.value.length) return;
     try {
       isLoading.value = true;
       const response = await getAllCategories();
-    console.log(response.data);
-      categoriesList.value =
-  response.data?.categories ||
-  response.data?.data ||
-  response.data ||
-  [];
+categoriesList.value = response.data || [];
     } catch (error) {
       console.error(error);
       handleApiError(error);
@@ -28,19 +24,29 @@ if (categoriesList.value.length) return;
   };
 
 const formattedCategoryIds = computed(() => {
-  return selectedCategories.value;
+ return selectedCategories.value.map(cat => cat.slug || cat);
 });
+
+const setSelectedCategory = (category) => {
+  selectedCategory.value = category;
+};
 
   const setCategories = (categories) => {
     selectedCategories.value = categories;
   };
 
   return { 
+    //data
     categoriesList, 
     selectedCategories, 
     formattedCategoryIds,
+    
+    //looding
     isLoading, 
+
+    //action
     fetchCategories, 
-    setCategories 
+    setCategories,
+    setSelectedCategory
   };
 });

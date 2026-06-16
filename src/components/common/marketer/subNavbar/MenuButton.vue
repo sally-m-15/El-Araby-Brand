@@ -12,7 +12,7 @@
         opacity-0 invisible group-hover:opacity-100 group-hover:visible
         transition-all duration-200 z-50"
     >
-      <h3 class="text-gray-500 text-2xl">الفئات</h3>
+      <h3 class="text-gray-500 text-2xl pt-2">الفئات</h3>
       <div class="border-b border-border ">
                <ul
        v-for="item in  categories "

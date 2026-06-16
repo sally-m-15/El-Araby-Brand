@@ -3,7 +3,7 @@ import { toast } from "vue3-toastify";
 
 //'http://127.0.0.1:8000'  
 export const api = axios.create({
-baseURL: 'https://fakestoreapi.com'
+baseURL: 'https://dummyjson.com'
 })
 
 api.interceptors.request.use((config) => {

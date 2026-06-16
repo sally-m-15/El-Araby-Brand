@@ -3,7 +3,7 @@
   <ul class="flex gap-6 items-center justify-center">
     <li v-for="item in subMenuItems" :key="item.id" class="menu-item">
       <router-link :to="item.path" class="menu-link">
-    <span class="menu-text">{{ item.name }}</span>
+    <span class=" text-xl">{{ item.name }}</span>
       </router-link>
     </li>
     <li>

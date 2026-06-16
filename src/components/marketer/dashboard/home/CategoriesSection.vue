@@ -9,14 +9,14 @@
 
 <BaseSpinner v-if="isLoading" message="جاري جلب الفئات..." />
 
-    <div v-else class="flex items-center gap-6 overflow-x-auto pb-2 scrollbar-none">
-      <CategoryCard 
-        v-for="cat in categoriesStore.categoriesList" 
-        :key="cat.id"
-        :category="cat"
-        :is-active="categoriesStore.selectedCategory?.id === cat.id"
-        @select="categoriesStore.setCategory"
-      />
+    <div v-else class="flex items-center justify-center gap-10 overflow-x-auto pb-2 scrollbar-none">
+<CategoryCard 
+  v-for="cat in categoriesStore.categoriesList.slice(0, 5)" 
+  :key="cat.id"
+  :category="cat"
+  :is-active="categoriesStore.selectedCategory?.id === cat.id"
+  @select="categoriesStore.setCategories"
+/>
     </div>
 
   </section>

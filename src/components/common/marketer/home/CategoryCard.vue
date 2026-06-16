@@ -2,7 +2,7 @@
 <template>
   <div 
     @click="$emit('select', category)"
-    class="flex flex-col items-center gap-2 cursor-pointer group select-none"
+    class="flex flex-col items-center gap-2 mt-2 cursor-pointer group select-none"
   >
     <div 
       class="w-20 h-20 rounded-full border-2 p-1 flex items-center justify-center bg-white transition-all duration-300"

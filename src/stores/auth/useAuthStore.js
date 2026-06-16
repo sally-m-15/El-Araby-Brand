@@ -89,8 +89,6 @@ export const useAuthStore = defineStore('auth', () => {
       isLoading.value = true
 
       const payload = createRegisterPayload(formData, currentRole)
-console.log(payload);
-      console.log('🚀 الـ Payload النهائي المبعوت فعلياً هو:', payload)
 
       const response =
         currentRole === ROLES.MARKETER
@@ -100,7 +98,6 @@ console.log(payload);
       responseSuccess(response)
       redirectToLogin(currentRole, formData.email)
     } catch (error) {
-      console.error('❌ الإيرور اللي حصل بالظبط هو:', error)
       handleApiError(error)
     } finally {
       isLoading.value = false
@@ -119,7 +116,6 @@ console.log(payload);
       handleAuthSuccess(response)
       responseSuccess(response)
     } catch (error) {
-      console.error('❌ إيرور في تسجيل الدخول:', error)
       handleApiError(error)
     } finally {
       isLoading.value = false
@@ -156,11 +152,16 @@ console.log(payload);
   }
 
   return {
+    //data
     user,
     token,
     role,
+     isAuthenticated,
+
+    //looding
     isLoading,
-    isAuthenticated,
+
+    //action
     handleRegister,
     handleLogin,
     handleForgotPassword,

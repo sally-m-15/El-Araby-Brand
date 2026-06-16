@@ -12,9 +12,9 @@
       </button>
 
       <img 
-        v-if="product?.image" 
-        :src="product.image" 
-        :alt="product.title" 
+        v-if="product?.images?.length"
+        :src="product.images[0]"
+        :alt="product.title"
         class="w-full h-full object-cover group-hover:scale-110 transition duration-500" 
       />
       
@@ -36,7 +36,7 @@
     </div>
 
     <h3 class="text-gray-700 text-xs font-medium mb-3 h-8 line-clamp-2 leading-relaxed">
-      {{ product.title }}
+      {{ product.title.split(' ').slice(0, 2).join(' ') }}
     </h3>
 
     <div class="grid grid-cols-2 gap-2 text-center text-[11px] mb-3">

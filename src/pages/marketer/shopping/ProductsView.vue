@@ -1,11 +1,14 @@
 <template>
   <div class="flex flex-col gap-6 mt-10 px-20">
-    <ProductsHeader />
+    <ProductsHeader 
+  :title="pageTitle" 
+  :totalProducts="allProducts.length" 
+/>
 
     <div class="flex gap-6">
         <ProductsSidebar
-      :filters="filters"
-      @update-filters="updateFilters"
+      :filters="productsStore.filters"
+      @update-filters="productsStore.updateFilters"
     />
 
 <ProductsContent
@@ -13,41 +16,59 @@
   :loading="isAllProductsLoading"
 />
     </div>
+    <Pagination />
   </div>
 </template>
 
 <script setup>
-import { reactive, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import ProductsHeader from '@/components/marketer/dashboard/products/ProductsHeader.vue';
 import ProductsSidebar from '@/components/marketer/dashboard/products/ProductsSidebar.vue';
 import { useProductsStore } from '@/stores/home/useProductsStore';
 import ProductsContent from '@/components/marketer/dashboard/products/ProductsContent.vue';
+import Pagination from '@/components/marketer/dashboard/products/Pagination.vue';
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 
 const productsStore = useProductsStore();
+const route = useRoute();
 
 const {
   allProducts,
   isAllProductsLoading
 } = storeToRefs(productsStore);
 
-const filters = reactive({
-  category: '',
-  minPrice: null,
-  maxPrice: null,
-  brand: '',
-  sortBy: 'latest'
+const pageTitle = computed(() => {
+  if (productsStore.filters.category) {
+return `منتجات (${productsStore.filters.category})`;
+  }
+
+  switch (route.query.type) {
+    case 'latest':
+      return 'أحدث المنتجات';
+
+    case 'new-arrivals':
+      return 'وصلت حديثاً';
+
+    case 'best-sellers':
+      return 'الأفضل مبيعاً';
+
+    default:
+      return 'كل المنتجات';
+  }
 });
 
-const updateFilters = (newFilters) => {
-  Object.assign(filters, newFilters);
 
-  console.log(filters);
-};
+onMounted(async () => {
+  if (route.query.type) {
+    productsStore.filters.category = '';
+  }
 
-onMounted(() => {
-  productsStore.fetchAllProducts();
+  await productsStore.fetchAllProducts();
+
+  console.log('أول منتج', allProducts.value[0]);
 });
 </script>
 

@@ -13,12 +13,13 @@
       <li
         v-for="category in categoriesList"
         :key="category"
+        @click="selectCategory(category)"
         class="flex items-center justify-between cursor-pointer hover:text-primary transition-colors"
       >
 
         <span>
           <v-icon name="bi-tag" scale="0.8" />
-          {{ category }}</span>
+          {{ category.name }}</span>
       </li>
     </ul>
   </div>
@@ -29,13 +30,19 @@ import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useCategoriesStore } from '@/stores/home/useCategoriesStore';
 import SectionHeader from './SectionHeader.vue';
+import { useProductsStore } from '@/stores/home/useProductsStore.js';
 
 const categoriesStore = useCategoriesStore();
+const productsStore = useProductsStore();
 
 const {
   categoriesList,
   isLoading
 } = storeToRefs(categoriesStore);
+
+const selectCategory = (category) => {
+  productsStore.filters.category = category.name;
+};
 
 onMounted(() => {
   categoriesStore.fetchCategories();

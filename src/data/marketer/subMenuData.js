@@ -5,12 +5,17 @@ export const subMenuItems = [
     path: "/marketer/home",
   },
   {
-    id: 2,
+    id:2,
+    name: "المنتجات",
+    path: '/marketer/products'
+  },
+  {
+    id: 3,
     name: "لوحة التحكم",
     path: "/marketer/stores",
   },
     {
-    id: 3,
+    id: 4,
     name: "المحفظة",
     path: "/marketer/stores",
   },

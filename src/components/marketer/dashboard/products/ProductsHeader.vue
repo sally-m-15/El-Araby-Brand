@@ -2,7 +2,7 @@
   <div class="flex items-center justify-between mb-6">
 
     <h2 class="text-2xl font-bold text-gray-800">
-      {{ title}}  احدث المنتجات 
+      {{ title}} 
       <span class="text-sm font-normal text-gray-500">
         ({{ totalProducts }} قطعة)
       </span>
